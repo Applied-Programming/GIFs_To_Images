@@ -6,7 +6,7 @@ def processImage(infile):
     try:
         im = Image.open(infile)
     except IOError:
-        print "Cant load", infile
+        print("Cant load", infile)
         sys.exit(1)
     i = 0
     mypalette = im.getpalette()
@@ -17,9 +17,9 @@ def processImage(infile):
             new_im = Image.new("RGBA", im.size)
             new_im.paste(im)
             infilename = os.path.splitext(infile)[0]
-            new_im.save('Converted_gifs/' +  infilename+str(i)+'.jpg')
-            #new_im.save(infilename +str(i)+'.jpg')
-            print 'Saved : ' + infilename + str(i)+'.jpg'
+            #new_im.save('Converted_gifs/' +  infilename+str(i)+'.jpg')
+            new_im.save(infile+str(i)+'.jpg')
+            print('Saved : ' + infilename+str(i)+'.jpg')
             i += 1
             im.seek(im.tell() + 1)
 
@@ -27,6 +27,6 @@ def processImage(infile):
         pass # end of sequence
 
 for single_gif in glob.glob('*.gif'):
-    print single_gif
+    print(single_gif)
     processImage(single_gif)
-    #shutil.move(single_gif,'Converted_gifs/'+single_gif)
+    shutil.move(single_gif,'Converted_gifs/'+single_gif)
